@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><spec name="Washing Machine" url="http://localhost:89/">
+    <manufact name="Manufacture">
+        <label name="Name">
+            <value>Washing Machine</value>
+        </label>
+        <label name="Type">
+            <value>WM-AC2013</value>
+        </label>
+        <label name="Serial_Num">
+            <value>AC20130912</value>
+        </label>
+    </manufact> 
+     
+    <state>
+      	<variable name="Temperature"/>
+      	<variable name="ClothType"/>
+      	<variable name="SpinSpeed"/>
+      	<variable name="Mode"/>
+    </state> 
+     
+    <operations name="Operations">    
+    	<operation name="GetTemp">
+    		<name>Get Temperature</name>
+    	  	<returns>
+    	    	<return name="Temperature">
+    	    		<type>Integer</type>
+    	    	</return>
+    	  	</returns>
+    	</operation>
+    	
+    	<operation name="GetClothType">
+    		<name>Get Cloth Type</name>
+    	  	<returns>
+    	    	<return name="ClothType">
+    	      		<type>String</type>
+    	    	</return>
+    	  	</returns>
+    	</operation>
+    	
+    	<operation name="GetSpinSpeed">
+    		<name>Get Spin Speed</name>
+    	  	<returns>
+    	    	<return name="SpinSpeed">
+    	      		<type>Integer</type>
+    	    	</return>
+    	  	</returns>
+    	</operation>
+    	
+    	<operation name="GetMode">
+    		<name>Get Mode</name>
+    	  	<returns>
+    	    	<return name="Mode">
+    	      		<type>String</type>
+    	    	</return>
+    	  	</returns>
+    	</operation>
+    
+		<operation name="SetTemp">
+			<name>Set Temperature</name>
+			<active-if select="Mode">
+				<include select="Wash"/>
+			</active-if>
+			<parameters>
+				<parameter name="Temperature" unit="Celsius">
+					<selection num="5">
+						<slct index="1">
+							<value>30</value>
+						</slct>
+						<slct index="2">
+							<value>40</value>
+						</slct>
+						<slct index="3">
+							<value>50</value>
+						</slct>
+						<slct index="4">
+							<value>60</value>
+						</slct>
+						<slct index="5">
+							<value>70</value>
+						</slct>  
+					</selection>
+					<type>Integer</type>
+				</parameter>
+			</parameters>
+		</operation>
+
+		<operation name="SetClothType">
+			<name>Set Cloth Type</name>
+			<parameters>
+				<parameter name="ClothType">
+					<selection num="5">
+						<slct index="1">
+							<value>cotton</value>
+						</slct>
+						<slct index="2">
+							<value>jeans</value>
+						</slct>
+						<slct index="3">
+							<value>wool</value>
+						</slct>
+						<slct index="4">
+							<value>nylon</value>
+						</slct>
+						<slct index="5">
+							<value>linen</value>
+						</slct>
+					</selection>
+					<type>String</type>
+				</parameter>
+			</parameters>
+		</operation>
+		  
+		<operation name="SetSpinSpeed">
+			<name>Set Spin Speed</name>
+			<parameters>
+				<parameter name="SpinSpeed" unit="R/Min">
+					<selection num="4">
+						<slct index="1">
+							<value>600</value>
+						</slct>
+						<slct index="2">
+							<value>800</value>
+						</slct>
+						<slct index="3">
+							<value>1000</value>
+						</slct>
+						<slct index="4">
+							<value>1200</value>
+						</slct>
+					</selection>
+				</parameter>
+				<type>Integer</type>
+			</parameters>
+		</operation>
+		  
+		<operation name="SetMode">
+			<name>Set Mode</name>	
+			<parameters>
+				<parameter name="Mode">
+					<selection num="2">
+						<slct index="1">
+							<value>Wash</value>
+						</slct>
+						<slct index="2">
+							<value>Spin</value>
+						</slct>
+					</selection>
+				</parameter>
+				<type>String</type>
+			</parameters>
+		</operation>
+				
+		<operation name="Start">
+			<name>Start</name>
+		</operation>
+		
+		<operation name="Suspend">
+			<name>Suspend</name>
+		</operation>
+		
+		<operation name="Continue">
+			<name>Continue</name>
+		</operation>
+		
+		<operation name="Pause">
+			<name>Pause</name>
+		</operation>
+    </operations>
+	 
+	<notifications name="Notifications">
+		<notification name="Suspended">
+			<name>Operation suspended.</name>
+		</notification>
+		
+		<notification name="Paused">
+			<name>Operation paused.</name>
+		</notification>
+		
+		<notification name="Finished">
+			<name>Operation finished.</name>
+		</notification>
+		
+		<notification name="Incomplete">
+			<name>Incomplete settings.</name>
+		</notification>
+		
+		<notification name="Unavailable">
+			<name>Not available.</name>
+		</notification>
+		
+		<notification name="AlreadyRunning">
+			<name>Machine is already running.</name>
+		</notification>
+		
+		<notification name="AlreadyPaused">
+			<name>Machine is already paused.</name>
+		</notification>
+		
+		<notification name="NotStarted">
+			<name>Machine is not started yet. Start first.</name>
+		</notification>
+		
+		<notification name="Started">
+			<name>Machine is started.</name>
+		</notification>
+		
+		<notification name="Continued">
+			<name>Operation is continued.</name>
+		</notification>
+		
+		<notification name="Busy">
+			<name>Machine is running. Not able to update parameters.</name>
+		</notification>
+	</notifications>
+</spec>

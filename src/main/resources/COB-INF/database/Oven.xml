@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><spec name="Oven" url="http://localhost:88/">
+    <manufact name="Manufacture">
+        <label name="Name">
+            <value>Oven</value>
+        </label>
+        <label name="Type">
+            <value>OV-AC2013</value>
+        </label>
+        <label name="Serial_Num">
+            <value>AC20130922</value>
+        </label>
+    </manufact>
+    
+    <state>
+    	<variable name="Temperature"/>
+    	<variable name="Timer"/>
+    	<variable name="Mode"/>
+    </state> 
+     
+    <operations name="Operations">
+    	<operation name="GetTemp">
+    		<name>Get Temperature</name>
+    		<label name=""/>
+    	 	<returns>
+    	    	<return name="Temperature">
+    	     		<type>Integer</type>
+    	    	</return>
+    	  	</returns>
+    	</operation>
+    	
+    	<operation name="GetTimer">
+    		<name>Get Timer</name>
+    		<returns>
+    	    	<return name="Timer">
+    	      		<type>Integer</type>
+    	    	</return>
+    	  	</returns>
+    	</operation>
+    	
+    	<operation name="GetMode">
+    		<name>Get Mode</name>
+    	  	<returns>
+    	    	<return name="Mode">
+    	      		<type>String</type>
+    	    	</return>
+    	 	</returns>
+    	</operation>
+    	
+		<operation name="SetTemp">
+			<name>Set Temperature</name>
+			<parameters>
+				<parameter name="Temperature" unit="Celsius">
+					<selection num="0">
+						<min>50</min>
+						<max>250</max>
+					</selection>
+					<type>Integer</type>
+				</parameter>
+			</parameters>
+		</operation>
+		
+		<operation name="SetTimer">
+			<name>Set Timer</name>
+			<parameters>
+				<parameter name="Timer" unit="Minute">
+					<selection num="0">
+						<min>5</min>
+						<max>180</max>
+					</selection>
+					<type>Integer</type>
+				</parameter>
+			</parameters>
+		</operation>
+		
+		<operation name="SetMode">
+			<name>Set Mode</name>
+			<parameters>
+				<parameter name="Mode">
+					<selection num="5">
+						<slct index="1">
+							<value>Both side grill</value>
+						</slct>
+						<slct index="2">
+							<value>Top side grill</value>
+						</slct>
+						<slct index="3">
+							<value>Fan grill</value>
+						</slct>
+						<slct index="4">
+							<value>Fan Baking</value>
+						</slct>
+						<slct index="5">
+							<value>Top Baking</value>
+						</slct>
+					</selection>
+					<type>String</type>
+				</parameter>
+			</parameters>
+		</operation>
+		
+		<operation name="Start">
+			<name>Start</name>
+		</operation>
+			
+		<operation name="Suspend">
+			<name>Suspend</name>
+		</operation>
+    </operations>
+	 
+	<notifications name="Notifications">
+		<notification name="Finished">
+			<name>Operation finished</name>
+		</notification>
+		
+		<notification name="Started">
+			<name>Machine is started.</name>
+		</notification>
+		
+		<notification name="Suspended">
+			<name>Operation suspended.</name>
+		</notification>
+		
+		<notification name="Incomplete">
+			<name>Incomplete settings.</name>
+		</notification>
+		
+		<notification name="Busy">
+			<name>Machine is running. Not able to update parameters.</name>
+		</notification>
+		
+		<notification name="NotStarted">
+			<name>Machine is not started yet. Start first.</name>
+		</notification>
+		
+		<notification name="Unavailable">
+			<name>Not available.</name>
+		</notification>
+		
+		<notification name="WrongType">
+			<name>Please enter a valid value.</name>
+		</notification>
+	</notifications>
+</spec>
